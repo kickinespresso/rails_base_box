@@ -1,0 +1,11 @@
+#.gitignore
+.DS_Store
+._.DS_Store
+.idea
+
+# .procfile
+.procfile
+/.vagrant
+/.vagrantfile
+chef/tmp/*
+chef/cookbooks/

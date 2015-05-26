@@ -42,8 +42,8 @@ Vagrant.configure('2') do |config|
     chef.cookbooks_path = chef_cookbooks_path
     chef.add_recipe 'postgresql::server'
     chef.add_recipe 'vim'
-    chef.add_recipe "rbenv::default"
-    chef.add_recipe "rbenv::ruby_build"
+    #chef.add_recipe "rbenv::default"
+    #chef.add_recipe "rbenv::ruby_build"
     
     chef.json = {
       :postgresql => {
@@ -80,4 +80,7 @@ Vagrant.configure('2') do |config|
       }
     }
   end
+  config.vm.provision :shell, path: "rbenv_install.sh"
+  config.vm.provision :shell, path: "ruby_install.sh"
+
 end

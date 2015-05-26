@@ -8,14 +8,14 @@
 #sudo apt-get -y install libxslt-dev libxml2-dev build-essential libpq-dev libsqlite3-dev autoconf bison openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libc6-dev ncurses-dev automake libtool qt5-default libqt5webkit5-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev nginx sqlite3
 #sudo apt-get -y install imagemagick php5-imagick postgresql postgresql-contrib vim postgresql-client
 
+#git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+#echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+#echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+#git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 
 
 echo "gem: --no-ri --no-rdoc" > ~/.gemrc
 echo "cd /vagrant" >> ~/.bash_profile
-git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
-echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
-git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 rbenv install 2.2.0
 rbenv local 2.2.0
 rbenv global 2.2.0

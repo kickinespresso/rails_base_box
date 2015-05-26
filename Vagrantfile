@@ -80,7 +80,7 @@ Vagrant.configure('2') do |config|
       }
     }
   end
-  config.vm.provision :shell, path: "rbenv_install.sh"
-  config.vm.provision :shell, path: "ruby_install.sh"
+  config.vm.provision :shell, path: "rbenv_install.sh", privileged: false
+  config.vm.provision :shell, path: "ruby_install.sh", privileged: false
 
 end

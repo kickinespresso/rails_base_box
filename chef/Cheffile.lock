@@ -1,0 +1,37 @@
+SITE
+  remote: http://community.opscode.com/api/v1
+  specs:
+    apt (2.7.0)
+    build-essential (2.2.3)
+    chef-sugar (3.1.0)
+    chef_handler (1.1.8)
+    dmg (2.2.2)
+    git (4.2.2)
+      build-essential (>= 0.0.0)
+      dmg (>= 0.0.0)
+      windows (>= 0.0.0)
+      yum-epel (>= 0.0.0)
+    ohai (2.0.1)
+    openssl (4.0.0)
+      chef-sugar (>= 0.0.0)
+    postgresql (3.4.18)
+      apt (>= 1.9.0)
+      build-essential (>= 0.0.0)
+      openssl (~> 4.0.0)
+    rbenv (1.7.1)
+      apt (>= 0.0.0)
+      build-essential (>= 0.0.0)
+      git (>= 0.0.0)
+      ohai (>= 1.1)
+    vim (1.1.2)
+    windows (1.37.0)
+      chef_handler (>= 0.0.0)
+    yum (3.6.0)
+    yum-epel (0.6.0)
+      yum (~> 3.0)
+
+DEPENDENCIES
+  postgresql (>= 0)
+  rbenv (~> 1.7.1)
+  vim (>= 0)
+

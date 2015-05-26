@@ -4,7 +4,7 @@ Vagrant.configure('2') do |config|
   config.omnibus.chef_version = :latest
   config.ssh.forward_agent = true
 
-  #config.librarian_chef.cheffile_dir = "chef"
+  config.librarian_chef.cheffile_dir = "chef"
 
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", "2048"]
@@ -33,8 +33,51 @@ Vagrant.configure('2') do |config|
   config.vm.network :forwarded_port, guest: 3000, host: 4000
   config.vm.network :forwarded_port, guest: 1080, host: 4080 # Mailcatcher
 
+  config.vm.provision :shell, path: "bootstrap.sh"
   nfs_setting = RUBY_PLATFORM =~ /darwin/ || RUBY_PLATFORM =~ /linux/
   config.vm.synced_folder ".", "/vagrant", id: "vagrant-root", :nfs => nfs_setting
 
-
+  chef_cookbooks_path = ["chef/cookbooks","chef/site-cookbooks"]
+   config.vm.provision :chef_solo do |chef|
+    chef.cookbooks_path = chef_cookbooks_path
+    chef.add_recipe 'postgresql::server'
+    chef.add_recipe 'vim'
+    chef.add_recipe "rbenv::default"
+    chef.add_recipe "rbenv::ruby_build"
+    
+    chef.json = {
+      :postgresql => {
+        :config   => {
+          :listen_addresses => "*",
+          :port             => "5432"
+        },
+        :pg_hba   => [
+          {
+            :type   => "local",
+            :db     => "postgres",
+            :user   => "postgres",
+            :addr   => nil,
+            :method => "trust"
+          },
+          {
+            :type   => "host",
+            :db     => "all",
+            :user   => "all",
+            :addr   => "0.0.0.0/0",
+            :method => "md5"
+          },
+          {
+            :type   => "host",
+            :db     => "all",
+            :user   => "all",
+            :addr   => "::1/0",
+            :method => "md5"
+          }
+        ],
+        :password => {
+          :postgres => "password"
+        }
+      }
+    }
+  end
 end

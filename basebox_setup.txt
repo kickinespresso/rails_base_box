@@ -3,9 +3,13 @@
 #http://sparkling-gopher-2729.vagrantshare.com
 #https://scotch.io/tutorials/how-to-create-a-vagrant-base-box-from-an-existing-one
 #base box setup
-sudo apt-get -y update
-sudo apt-get -y install libxslt-dev libxml2-dev build-essential libpq-dev libsqlite3-dev autoconf bison openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libc6-dev ncurses-dev automake libtool qt5-default libqt5webkit5-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev nginx sqlite3
-sudo apt-get -y install imagemagick php5-imagick postgresql postgresql-contrib vim postgresql-client
+#http://docs.vagrantup.com/v2/getting-started/provisioning.html
+#sudo apt-get -y update
+#sudo apt-get -y install libxslt-dev libxml2-dev build-essential libpq-dev libsqlite3-dev autoconf bison openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libc6-dev ncurses-dev automake libtool qt5-default libqt5webkit5-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev nginx sqlite3
+#sudo apt-get -y install imagemagick php5-imagick postgresql postgresql-contrib vim postgresql-client
+
+
+
 echo "gem: --no-ri --no-rdoc" > ~/.gemrc
 echo "cd /vagrant" >> ~/.bash_profile
 git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
@@ -16,9 +20,12 @@ rbenv install 2.2.0
 rbenv local 2.2.0
 rbenv global 2.2.0
 rbenv local 2.2.0
+rbenv rehash
 gem install bundler
+gem install mailcatcher
+sudo /usr/sbin/update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
+#sudo service postgresql status
 sudo apt-get clean
 sudo dd if=/dev/zero of=/EMPTY bs=1M
 sudo rm -f /EMPTY
 cat /dev/null > ~/.bash_history && history -c && exit
-
